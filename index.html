@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandrillus Academy · Aulas de tecnologia que levam à autonomia</title>
+<meta name="description" content="Mandrillus Academy: aulas particulares de programação e .NET para quem entende a teoria e quer ganhar segurança para fazer sozinho.">
+<meta property="og:title" content="Mandrillus Academy">
+<meta property="og:description" content="Inseguro, não incapaz. Aulas particulares de C# e ASP.NET Core MVC.">
+<meta property="og:image" content="assets/banner.jpg">
+<meta name="theme-color" content="#0B1B33">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B33; --navy-2:#13284A; --blue:#2E5BA1; --blue-l:#93C5FD; --red:#C21C35; --red-l:#F87171;
+    --ink:#0F172A; --muted:#475569; --bg:#F8FAFC; --card:#fff; --line:#E2E8F0; --wa:#25D366;
+    --max:1120px; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.12;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  section{padding:80px 0}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+  h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:8px 0 16px}
+  .lead{color:var(--muted);max-width:660px}
+
+  header{position:fixed;inset:0 0 auto 0;z-index:20;transition:background .2s}
+  header.solid{background:rgba(11,27,51,.94);backdrop-filter:blur(8px)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;color:#fff}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-logo{width:44px;height:44px;border-radius:12px;background:#F8FAFC;display:grid;place-items:center}
+  .brand-logo img{width:36px;height:36px}
+  .brand b{font-family:"Space Grotesk";font-size:1.1rem}
+  nav a{text-decoration:none;font-size:.92rem;opacity:.85;margin-left:22px}
+  nav a:hover{opacity:1}
+  @media(max-width:800px){nav{display:none}}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-wa{background:var(--wa);color:#05210f}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:#fff}
+
+  /* Banner */
+  .banner{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--navy)}
+  .banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+  .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,27,51,.96) 0%,rgba(11,27,51,.85) 38%,rgba(11,27,51,.25) 75%,rgba(11,27,51,.1) 100%)}
+  .banner .wrap{position:relative;z-index:1;width:100%;padding-top:68px}
+  .banner h1{font-size:clamp(2.6rem,7.5vw,5.2rem);max-width:640px}
+  .banner h1 em{font-style:normal;color:var(--red-l)}
+  .banner p{max-width:520px;color:#CBD5E1;font-size:1.15rem;margin:22px 0 34px}
+  .banner .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .banner .eyebrow{color:var(--blue-l)}
+  @media(min-width:801px){
+    .banner img{left:auto;width:60%;object-position:50% 22%}
+    .banner::after{background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 40%,rgba(11,27,51,.6) 52%,rgba(11,27,51,0) 70%)}
+  }
+  @media(max-width:800px){
+    .banner{align-items:flex-end;padding-bottom:56px}
+    .banner::after{background:linear-gradient(180deg,rgba(11,27,51,.15) 0%,rgba(11,27,51,.55) 40%,rgba(11,27,51,.97) 72%)}
+  }
+
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .card h3{font-size:1.2rem;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:.95rem}
+  .num{font-family:"JetBrains Mono",monospace;color:var(--red);font-size:.85rem}
+
+  .levels{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+  .level{flex:1 1 150px;padding:16px;border-radius:12px}
+  .level b{font-family:"Space Grotesk";display:block}
+  .level small{font-size:.82rem;opacity:.85}
+  .level:nth-child(1){background:#DBEAFE;color:var(--navy)}
+  .level:nth-child(2){background:#BFDBFE;color:var(--navy)}
+  .level:nth-child(3){background:#93C5FD;color:var(--navy)}
+  .level:nth-child(4){background:var(--blue);color:#fff}
+  .level:nth-child(5){background:var(--red);color:#fff}
+
+  .dark{background:var(--navy);color:#fff}
+  .dark .lead{color:#CBD5E1}
+  .course{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;background:var(--navy-2);border:1px solid #22406E;border-radius:24px;padding:40px}
+  .course ul{list-style:none;margin:18px 0 28px}
+  .course li{padding:6px 0;color:#CBD5E1}
+  .course li::before{content:"› ";color:var(--red-l);font-weight:700}
+  .course .tag{display:inline-block;font-family:"JetBrains Mono";font-size:.75rem;padding:4px 10px;border-radius:999px;background:rgba(194,28,53,.25);color:#FECACA;margin-bottom:12px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fact{background:rgba(255,255,255,.05);border-radius:14px;padding:18px}
+  .fact b{font-family:"Space Grotesk";font-size:1.6rem;display:block}
+  .fact span{font-size:.85rem;color:#94A3B8}
+  @media(max-width:800px){.course{grid-template-columns:1fr;padding:28px}}
+
+  .teacher{display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:center}
+  .teacher img{width:220px;height:220px;border-radius:50%;object-fit:cover;border:5px solid var(--blue)}
+  @media(max-width:640px){.teacher{grid-template-columns:1fr}.teacher img{width:150px;height:150px}}
+
+  .family{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .family span{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;background:#fff}
+  .family span.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  .family span.soon{position:relative;cursor:help;color:var(--muted)}
+  .family span.soon::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);background:var(--navy);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.75rem;white-space:nowrap;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+  .family span.soon::before{content:"";position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--navy);border-bottom:0;opacity:0;transition:opacity .15s}
+  .family span.soon:hover::after,.family span.soon:focus::after{opacity:1;transform:translate(-50%,0)}
+  .family span.soon:hover::before,.family span.soon:focus::before{opacity:1}
+  .cta{text-align:center}
+  .cta .lead{margin:0 auto 28px}
+  footer{background:#08142A;color:#94A3B8;font-size:.85rem;padding:28px 0}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:30;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .wa-float svg{width:32px;height:32px;fill:#fff}
+  :focus-visible{outline:3px solid var(--blue-l);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap">
+    <a href="./" class="brand"><span class="brand-logo"><img src="assets/logo.svg" alt=""></span><b>Mandrillus Academy</b></a>
+    <nav aria-label="Seções">
+      <a href="#proposta">Proposta</a><a href="#metodo">Método</a><a href="#aulas">Aulas</a><a href="#professor">Professor</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- BANNER -->
+  <section class="banner" aria-label="Apresentação">
+    <img src="assets/banner.jpg" alt="Retrato de um mandril, o primata que dá nome à Mandrillus">
+    <div class="wrap">
+      <span class="eyebrow">Mandrillus Academy</span>
+      <h1>Inseguro, <em>não incapaz.</em></h1>
+      <p>Aulas de tecnologia para encurtar a distância entre entender o conteúdo e conseguir fazer sozinho.</p>
+      <div class="actions">
+        <a class="btn btn-red" href="#aulas">Ver aulas disponíveis</a>
+        <a class="btn btn-ghost" href="#metodo">Como funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPOSTA -->
+  <section id="proposta">
+    <div class="wrap">
+      <span class="eyebrow">Proposta</span>
+      <h2>Reforço para quem travou, não para quem desistiu</h2>
+      <p class="lead">A Mandrillus Academy é o ramo educacional da família Mandrillus. O foco é reforçar os conceitos que não ficaram claros em cursos, faculdades e escolas técnicas, com atenção individual e prática guiada.</p>
+      <div class="grid g3" style="margin-top:32px">
+        <div class="card"><h3>Atenção individual</h3><p>A aula acompanha o seu ritmo e as suas dúvidas, não o ritmo de uma turma.</p></div>
+        <div class="card"><h3>Pouco conteúdo por vez</h3><p>No máximo três conceitos por aula, para sobrar tempo de praticar.</p></div>
+        <div class="card"><h3>Material em toda aula</h3><p>Prévia antes, exercícios para casa e gabarito depois.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section id="metodo" style="background:#fff">
+    <div class="wrap">
+      <span class="eyebrow">Método</span>
+      <h2>Do entender ao fazer, em quatro passos</h2>
+      <div class="grid g4" style="margin-top:28px">
+        <div class="card"><span class="num">01</span><h3>Diagnóstico</h3><p>Descobrir onde você está e o que está travando.</p></div>
+        <div class="card"><span class="num">02</span><h3>Demonstração</h3><p>Ver o conceito funcionando, passo a passo.</p></div>
+        <div class="card"><span class="num">03</span><h3>Variação</h3><p>Mudar o exemplo e errar com segurança.</p></div>
+        <div class="card"><span class="num">04</span><h3>Autonomia</h3><p>Resolver sozinho, com o professor só observando.</p></div>
+      </div>
+      <h3 style="margin-top:56px;font-size:1.4rem">Cinco níveis de autonomia</h3>
+      <p class="lead">Em cada tema, você sobe de nível no seu tempo.</p>
+      <div class="levels">
+        <div class="level"><b>Guiado</b><small>Faz junto, com o passo a passo.</small></div>
+        <div class="level"><b>Acompanhado</b><small>Faz com dicas pontuais.</small></div>
+        <div class="level"><b>Independente</b><small>Faz sozinho e tira dúvidas no fim.</small></div>
+        <div class="level"><b>Construtor</b><small>Combina conceitos em algo maior.</small></div>
+        <div class="level"><b>Autor</b><small>Cria a própria solução do zero.</small></div>
+      </div>
+      <div class="grid g3" style="margin-top:40px">
+        <div class="card"><span class="num">TRILHA</span><h3>Resgate</h3><p>Curta e com prazo combinado, para reforçar um tema específico.</p></div>
+        <div class="card"><span class="num">TRILHA</span><h3>Formação</h3><p>Mais longa, para construir a base com calma, do início ao fim.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AULAS -->
+  <section id="aulas" class="dark">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--red-l)">Aulas disponíveis</span>
+      <h2>Comece por aqui</h2>
+      <div class="course" style="margin-top:28px">
+        <div>
+          <span class="tag">Inscrições abertas</span>
+          <h3 style="font-size:1.8rem">Aulas particulares de C# e .NET</h3>
+          <ul>
+            <li>C# básico: variáveis, operadores, if/else, laços e arrays</li>
+            <li>Orientação a objetos</li>
+            <li>ASP.NET Core MVC</li>
+          </ul>
+          <a class="btn btn-red" href="campanha/aulas-csharp/">Ver detalhes e valores</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>1:1</b><span>Aula individual</span></div>
+          <div class="fact"><b>1h30</b><span>Por aula</span></div>
+          <div class="fact"><b>Online</b><span>Google Meet</span></div>
+          <div class="fact"><b>Seg–Sex</b><span>Sem fins de semana</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSOR -->
+  <section id="professor">
+    <div class="wrap teacher">
+      <img src="assets/foto.jpg" alt="Foto de Leandro Vieira">
+      <div>
+        <span class="eyebrow">Professor</span>
+        <h2>Leandro Vieira</h2>
+        <!-- CONFIRMAR: formação e experiência -->
+        <p class="lead">Desenvolvedor .NET backend há mais de 15 anos, trabalhando com C#, ASP.NET Core, SQL Server e APIs REST. Tecnólogo em Redes de Computadores.</p>
+        <div class="family" aria-label="Família Mandrillus">
+          <span class="soon" tabindex="0" data-tip="Em breve" aria-label="Mandrillus Company, em breve">Mandrillus Company</span><span class="soon" tabindex="0" data-tip="Em breve" aria-label="Mandrillus Systems, em breve">Mandrillus Systems</span><span class="on">Mandrillus Academy</span><span class="soon" tabindex="0" data-tip="Em breve" aria-label="Mandrillus Games, em breve">Mandrillus Games</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" style="background:#fff">
+    <div class="wrap">
+      <h2>Vamos conversar?</h2>
+      <p class="lead">Alunos novos têm uma aula experimental gratuita de 45 minutos para conhecer o método.</p>
+      <a class="btn btn-wa js-wa" href="https://wa.me/5511954695925" data-msg="Olá! Vim pelo site da Mandrillus Academy e quero saber mais sobre as aulas.">Chamar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano">2026</span> Mandrillus Academy · Leandro Vieira</span>
+    <span>Aulas online · segunda a sexta</span>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="https://wa.me/5511954695925" aria-label="Falar no WhatsApp" data-msg="Olá! Vim pelo site da Mandrillus Academy e quero saber mais sobre as aulas.">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+</a>
+
+<script>
+  const WA_NUMBER = "5511954695925";
+  document.querySelectorAll(".js-wa").forEach(a => {
+    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(a.dataset.msg || "");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  document.getElementById("ano").textContent = new Date().getFullYear();
+  const hdr = document.getElementById("hdr");
+  const onScroll = () => hdr.classList.toggle("solid", window.scrollY > 40);
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+</script>
+</body>
+</html>

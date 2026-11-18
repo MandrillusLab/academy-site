@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aulas particulares de C# e .NET · Leandro Vieira · Mandrillus Academy</title>
+<meta name="description" content="Aulas particulares e individuais de C# e ASP.NET Core MVC, online pelo Google Meet. Do básico à orientação a objetos e ao MVC, no seu ritmo.">
+<meta property="og:title" content="Aulas particulares de C# e .NET · Leandro Vieira">
+<meta property="og:description" content="Inseguro, não incapaz. Aulas 1:1 online de C# e ASP.NET Core MVC, com prévia, exercícios e gabarito.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B1B33">
+<link rel="icon" type="image/svg+xml" href="../../assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B33; --navy-2:#13284A; --blue:#3B82F6; --blue-soft:#DBEAFE;
+    --ink:#0F172A; --muted:#475569; --bg:#F8FAFC; --card:#FFFFFF; --line:#E2E8F0;
+    --wa:#25D366; --wa-dark:#128C7E;
+    --radius:16px; --max:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.15;letter-spacing:-.01em}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  section{padding:72px 0}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  h2{font-size:clamp(1.7rem,4vw,2.4rem);margin:8px 0 16px}
+  .lead{color:var(--muted);max-width:640px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(11,27,51,.92);backdrop-filter:blur(8px);color:#fff}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{text-decoration:none;line-height:1.1;display:flex;align-items:center;gap:12px}
+  .brand-logo{width:44px;height:44px;border-radius:12px;background:#F8FAFC;display:grid;place-items:center;flex:none}.brand-logo img{width:36px;height:36px}
+  .brand strong{font-family:"Space Grotesk";font-size:1.05rem;display:block}
+  .brand span{font-size:.75rem;opacity:.75}
+  nav a{text-decoration:none;font-size:.9rem;opacity:.85;margin-left:20px}
+  nav a:hover{opacity:1}
+  @media(max-width:760px){nav{display:none}}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s,background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-wa{background:var(--wa);color:#05210f}
+  .btn-wa:hover{background:#1ebe5b}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+  .btn svg{width:20px;height:20px}
+
+  /* Hero */
+  .hero{background:radial-gradient(1200px 500px at 85% -10%,#1E3A8A 0%,transparent 60%),var(--navy);color:#fff;padding:88px 0 96px;position:relative;overflow:hidden}
+  .hero h1{font-size:clamp(2.3rem,7vw,4.2rem);max-width:760px}
+  .hero h1 em{font-style:normal;color:#93C5FD}
+  .hero p{color:#CBD5E1;max-width:600px;margin:20px 0 32px;font-size:1.1rem}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
+  .chip{font-family:"JetBrains Mono",monospace;font-size:.8rem;padding:6px 12px;border-radius:999px;background:rgba(59,130,246,.18);border:1px solid rgba(147,197,253,.35);color:#DBEAFE}
+  .hero-foto{position:absolute;right:max(20px,calc((100vw - 1080px)/2 + 20px));top:50%;transform:translateY(-50%);width:300px;height:300px;border-radius:50%;object-fit:cover;border:6px solid var(--blue);box-shadow:0 0 0 14px rgba(59,130,246,.18)}
+  @media(max-width:960px){.hero-foto{position:static;transform:none;width:140px;height:140px;margin-bottom:24px;display:block}}
+  @media(min-width:961px){.hero h1{max-width:640px}}
+  .code-bg{position:absolute;right:-20px;bottom:10px;font-family:"JetBrains Mono",monospace;font-size:.95rem;color:rgba(147,197,253,.12);white-space:pre;pointer-events:none;user-select:none}
+  @media(max-width:760px){.hero-foto{position:absolute;right:max(20px,calc((100vw - 1080px)/2 + 20px));top:50%;transform:translateY(-50%);width:300px;height:300px;border-radius:50%;object-fit:cover;border:6px solid var(--blue);box-shadow:0 0 0 14px rgba(59,130,246,.18)}
+  @media(max-width:960px){.hero-foto{position:static;transform:none;width:140px;height:140px;margin-bottom:24px;display:block}}
+  @media(min-width:961px){.hero h1{max-width:640px}}
+  .code-bg{display:none}}
+
+  /* Cards / grids */
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .card h3{font-size:1.2rem;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:.95rem}
+  .num{font-family:"JetBrains Mono",monospace;color:var(--blue);font-size:.85rem}
+
+  /* Levels */
+  .levels{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+  .level{flex:1 1 150px;padding:16px;border-radius:12px;background:var(--blue-soft);color:var(--navy)}
+  .level:nth-child(2){background:#BFDBFE}.level:nth-child(3){background:#93C5FD}
+  .level:nth-child(4){background:#3B82F6;color:#fff}.level:nth-child(5){background:var(--navy);color:#fff}
+  .level b{font-family:"Space Grotesk";display:block;font-size:1.05rem}
+  .level small{opacity:.85;font-size:.82rem}
+
+  /* Content list */
+  .topics li{list-style:none;padding:10px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
+  .topics li::before{content:"›";color:var(--blue);font-weight:700}
+
+  /* Price */
+  .dark{background:var(--navy);color:#fff}
+  .dark .lead,.dark .card p{color:#CBD5E1}
+  .dark .card{background:var(--navy-2);border-color:#22406E}
+  .price{font-family:"Space Grotesk";font-size:3rem;font-weight:700}
+  .price small{font-size:1rem;font-weight:500;opacity:.75}
+  .rules li{margin:8px 0 8px 20px;color:#CBD5E1}
+
+  /* About */
+  .about{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
+  .avatar{object-fit:cover;border:4px solid var(--blue);width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--blue));display:grid;place-items:center;color:#fff;font-family:"Space Grotesk";font-size:3.5rem;font-weight:700}
+  @media(max-width:640px){.about{grid-template-columns:1fr}.avatar{width:140px;height:140px;font-size:2.5rem}}
+
+  /* FAQ */
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:600}
+  details p{color:var(--muted);margin-top:10px}
+
+  /* CTA + footer */
+  .cta{text-align:center}
+  .cta .lead{margin:0 auto 28px}
+  footer{background:#08142A;color:#94A3B8;font-size:.85rem;padding:28px 0}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+  /* Floating WhatsApp */
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:30;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .wa-float svg{width:32px;height:32px;fill:#fff}
+
+  :focus-visible{outline:3px solid #93C5FD;outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="../../" class="brand"><span class="brand-logo"><img src="../../assets/logo.svg" alt="Logo Mandrillus Academy"></span><span><strong>Leandro Vieira</strong><span>Mandrillus Academy</span></span></a>
+    <nav aria-label="Seções">
+      <a href="../../">Academy</a>
+      <a href="#metodo">Método</a><a href="#conteudo">Conteúdo</a><a href="#valores">Valores</a><a href="#sobre">Sobre</a><a href="#faq">Dúvidas</a>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-foto" src="../../assets/foto.jpg" alt="Leandro Vieira, professor de C# e .NET">
+      <span class="eyebrow">Aulas particulares de C# e .NET</span>
+      <h1>Inseguro, <em>não incapaz.</em></h1>
+      <p>Aulas individuais e online para encurtar a distância entre <strong>entender</strong> o código e <strong>conseguir fazer sozinho</strong>. Do C# básico ao ASP.NET Core MVC, no seu ritmo.</p>
+      <div class="actions">
+        <a class="btn btn-wa js-wa" href="#" data-msg="Olá, Leandro! Vim pelo site e quero agendar a aula experimental gratuita de C#/.NET.">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+          Agendar aula experimental grátis
+        </a>
+        <a class="btn btn-ghost" href="#metodo">Conhecer o método</a>
+      </div>
+      <div class="chips" aria-label="Formato">
+        <span class="chip">1:1</span><span class="chip">Google Meet</span><span class="chip">Seg a sex</span><span class="chip">Aulas de 1h30</span>
+      </div>
+    </div>
+    <div class="code-bg" aria-hidden="true" style="display:none">var aluno = new Aluno("você");
+aluno.Praticar();
+// entender → fazer sozinho
+Console.WriteLine(aluno.Nivel);</div>
+  </section>
+
+  <!-- PARA QUEM -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Para quem é</span>
+      <h2>Você entende na aula, mas trava na hora de fazer?</h2>
+      <p class="lead">Isso é comum, e não quer dizer falta de capacidade. Muitas vezes falta prática guiada no ritmo certo. As aulas são para quem:</p>
+      <div class="grid g4" style="margin-top:28px">
+        <div class="card"><h3>Está começando</h3><p>Quer aprender lógica e C# do zero, com alguém acompanhando de perto.</p></div>
+        <div class="card"><h3>Faz curso e travou</h3><p>Precisa reforçar conceitos que não ficaram claros no curso, na faculdade ou no técnico.</p></div>
+        <div class="card"><h3>Quer ir para a web</h3><p>Já programa um pouco e quer entender orientação a objetos e ASP.NET Core MVC.</p></div>
+        <div class="card"><h3>Prefere atenção individual</h3><p>Aprende melhor tirando dúvidas na hora, sem turma e sem pressa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section id="metodo" style="background:#fff">
+    <div class="wrap">
+      <span class="eyebrow">Método</span>
+      <h2>Quatro passos em cada aula</h2>
+      <p class="lead">No máximo três conceitos por aula. Menos conteúdo, mais tempo para praticar até sair sozinho.</p>
+      <div class="grid g4" style="margin-top:28px">
+        <div class="card"><span class="num">01</span><h3>Diagnóstico</h3><p>Entender onde você está e o que está travando.</p></div>
+        <div class="card"><span class="num">02</span><h3>Demonstração</h3><p>Ver o conceito funcionando em código real, passo a passo.</p></div>
+        <div class="card"><span class="num">03</span><h3>Variação</h3><p>Mudar o exemplo, errar com segurança e entender o porquê.</p></div>
+        <div class="card"><span class="num">04</span><h3>Autonomia</h3><p>Resolver sozinho, com o professor só observando.</p></div>
+      </div>
+
+      <h3 style="margin-top:56px;font-size:1.4rem">Níveis de autonomia</h3>
+      <p class="lead">A cada tema, você avança de nível no seu tempo.</p>
+      <div class="levels">
+        <div class="level"><b>Guiado</b><small>Faz junto, com o passo a passo.</small></div>
+        <div class="level"><b>Acompanhado</b><small>Faz com dicas pontuais.</small></div>
+        <div class="level"><b>Independente</b><small>Faz sozinho e tira dúvidas no fim.</small></div>
+        <div class="level"><b>Construtor</b><small>Combina conceitos em algo maior.</small></div>
+        <div class="level"><b>Autor</b><small>Cria a própria solução do zero.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO / TRILHAS -->
+  <section id="conteudo">
+    <div class="wrap">
+      <span class="eyebrow">Conteúdo</span>
+      <h2>O que você aprende</h2>
+      <div class="grid g2" style="margin-top:20px">
+        <div class="card">
+          <h3>Fundamentos e web</h3>
+          <ul class="topics">
+            <li>C# básico: variáveis, operadores e if/else</li>
+            <li>Laços de repetição e arrays</li>
+            <li>Orientação a objetos: classes, objetos, herança e mais</li>
+            <li>ASP.NET Core MVC: controllers, views e models</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Toda aula inclui</h3>
+          <ul class="topics">
+            <li>Prévia do tema antes da aula</li>
+            <li>Exercícios para casa</li>
+            <li>Gabarito comentado</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><span class="num">TRILHA</span><h3>Resgate</h3><p>Curta e focada. Para reforçar um tema específico que ficou para trás, com um prazo combinado.</p></div>
+        <div class="card"><span class="num">TRILHA</span><h3>Formação</h3><p>Mais longa. Do C# básico ao ASP.NET Core MVC, construindo a base com calma.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES + EXPERIMENTAL -->
+  <section id="valores" class="dark">
+    <div class="wrap">
+      <span class="eyebrow">Valores</span>
+      <h2>Simples e sem surpresa</h2>
+      <div class="grid g2" style="margin-top:20px">
+        <div class="card">
+          <h3>Aula individual</h3>
+          <div class="price">R$ 75 <small>/ aula de 1h30</small></div>
+          <p>Equivale a R$ 50 por hora. Pagamento antecipado via Pix. Aulas de segunda a sexta, pelo Google Meet.</p>
+        </div>
+        <div class="card">
+          <h3>Aula experimental gratuita</h3>
+          <p>Uma conversa de 45 minutos para conhecer seu nível, seus objetivos e o jeito da aula.</p>
+          <ul class="rules">
+            <li>Uma por pessoa, só para alunos novos</li>
+            <li>Diagnóstico e amostra de aula (sem exercícios nem gabarito)</li>
+            <li>Agendada de segunda a sexta, conforme disponibilidade</li>
+            <li>Falta sem aviso com 12h de antecedência cancela a gratuidade</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap about">
+      <img class="avatar" src="../../assets/foto.jpg" alt="Foto de Leandro Vieira">
+      <div>
+        <span class="eyebrow">Sobre mim</span>
+        <h2>Leandro Vieira</h2>
+        <!-- CONFIRMAR: formação e experiência -->
+        <p class="lead">Desenvolvedor .NET backend há mais de 15 anos, trabalhando com C#, ASP.NET Core, SQL Server e APIs REST. Tecnólogo em Redes de Computadores. Na Mandrillus Academy, ajudo quem entende a teoria a ganhar segurança para programar sozinho.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:#fff">
+    <div class="wrap">
+      <span class="eyebrow">Dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+      <details><summary>Preciso saber programar para começar?</summary><p>Não. A trilha Formação começa do zero, com variáveis e lógica.</p></details>
+      <details><summary>O que preciso ter em casa?</summary><p>Um computador com internet, microfone e acesso ao Google Meet. A instalação das ferramentas é feita junto na primeira aula, se precisar.</p></details>
+      <details><summary>Dá aula aos fins de semana?</summary><p>Não. As aulas são de segunda a sexta.</p></details>
+      <details><summary>Como funciona o pagamento?</summary><p>Via Pix, antes da aula. O valor é R$ 75 por aula de 1h30.</p></details>
+      <details><summary>Em quanto tempo vou aprender?</summary><p>Depende do seu ponto de partida e do tempo de prática. Não existe prazo garantido, mas a aula experimental ajuda a montar um plano realista.</p></details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <h2>Vamos começar pelo diagnóstico?</h2>
+      <p class="lead">Agende a aula experimental gratuita e veja se o método funciona para você.</p>
+      <a class="btn btn-wa js-wa" href="#" data-msg="Olá, Leandro! Vim pelo site e quero agendar a aula experimental gratuita de C#/.NET.">Chamar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano">2026</span> Leandro Vieira · Mandrillus Academy</span>
+    <span>Aulas online · segunda a sexta</span>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#" aria-label="Falar no WhatsApp" data-msg="Olá, Leandro! Vim pelo site e gostaria de saber mais sobre as aulas de C#/.NET.">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+</a>
+
+<script>
+  // Número do WhatsApp (DDI + DDD + número, só dígitos)
+  const WA_NUMBER = "5511954695925";
+  document.querySelectorAll(".js-wa").forEach(a => {
+    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(a.dataset.msg || "");
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  document.getElementById("ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
